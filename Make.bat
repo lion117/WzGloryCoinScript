@@ -1,0 +1,1 @@
+pyinstaller -F WzAutoClickBtnScript.py
