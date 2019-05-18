@@ -2,7 +2,7 @@
 
 
 
-g_adbPath = u""
+g_adbPath = "D:\\Program Files\\Microvirt\\MEmu\\adb.exe"
 
 
 
