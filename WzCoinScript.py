@@ -24,7 +24,7 @@ class Main():
         lTartget = u"feature0.png"
         lScreenShoot = u"screenshot.png"
         # lTargetList = [u"feature0.png" , u"feature1.png",u"feature3.png",u"feature4.png",u"feature5.png"]
-        lTargetList = [u"feature0.png", u"feature2.png", u"feature3.png", u"feature4.png", u"feature5.png"]
+        lTargetList = [u"feature0.png", u"feature2.png", u"feature3.png", u"feature4.png", u"feature5.png",u"feature6.png"]
 
         lIndex = 0
         print (u"begin")
