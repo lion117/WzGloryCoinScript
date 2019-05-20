@@ -62,6 +62,7 @@ class Main():
 
     @classmethod
     def matchTarget(cls, tTagertImg, tScreenShoot, tDev, tx, ty):
+        tTagertImg = os.path.basename(tTagertImg)
         if tTagertImg == u"feature2.png":
             print(u"found target %s" % (tTagertImg))
             lSrcImg = cv2.imread(tScreenShoot)
