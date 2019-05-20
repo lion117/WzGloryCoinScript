@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys, os, time
-sys.path.insert(0,os.path.dirname(os.getcwd()))
+# sys.path.insert(0,os.path.dirname(os.getcwd()))
 
 import  AndroidOpt
 import cv2
@@ -17,13 +17,14 @@ from  pylib.SiftMatch import findMatchImgXY
 
 class Main():
     @classmethod
+    def hello(cls):
+        print("hello world")
+    @classmethod
     def run(cls):
         lTartget = u"feature0.png"
         lScreenShoot = u"screenshot.png"
         # lTargetList = [u"feature0.png" , u"feature1.png",u"feature3.png",u"feature4.png",u"feature5.png"]
-        lTargetList = [u"feature0.png" ,u"feature2.png",u"feature3.png",u"feature4.png",u"feature5.png"]
-
-
+        lTargetList = [u"feature0.png", u"feature2.png", u"feature3.png", u"feature4.png", u"feature5.png"]
 
         lIndex = 0
         print (u"begin")
@@ -35,8 +36,10 @@ class Main():
                 print(u"screen shoot error")
                 break
             # Main.rotate(lScreenShoot)
-            lRet, lx, ly = False, 0 ,0
+            lRet, lx, ly = False, 0, 0
             for itor in lTargetList:
+                ltemp = u"img/" + itor
+                itor = os.path.join(os.getcwd(),ltemp)
                 try:
                     (lRet, lx, ly) = findMatchImgXY(itor, lScreenShoot)
                     if lRet is False:
@@ -44,16 +47,13 @@ class Main():
                         print (u"current times %d  skip diff " % (lIndex))
                         continue
                     else:
-                        Main.matchTarget(itor, lScreenShoot,lDev,lx,ly)
+                        Main.matchTarget(itor, lScreenShoot, lDev, lx, ly)
 
-                except Exception,exInfo:
-                    print (u"excepiton %s"%(exInfo))
+                except Exception, exInfo:
+                    print (u"excepiton %s" % (exInfo))
                     continue
 
-
-        print (u"done %d"%(lIndex))
-
-
+        print (u"done %d" % (lIndex))
 
     # @staticmethod
     # def rotate(tBigImg):
@@ -63,7 +63,7 @@ class Main():
     @classmethod
     def matchTarget(cls, tTagertImg, tScreenShoot, tDev, tx, ty):
         if tTagertImg == u"feature2.png":
-            print(u"found target %s"%(tTagertImg))
+            print(u"found target %s" % (tTagertImg))
             lSrcImg = cv2.imread(tScreenShoot)
             lX0, lY0 = tx - 30, ty - 30
             lX1, lY1 = tx + 30, ty + 30
@@ -72,24 +72,22 @@ class Main():
             if lMean < 150:
                 AndroidOpt.tapScreen(tx - 5, ty, tDevice=tDev)
                 time.sleep(2)
-                print(u"click target %s"%(tTagertImg))
+                print(u"click target %s" % (tTagertImg))
                 return True
             else:
-                print(u"not fit target %s"%(tTagertImg))
+                print(u"not fit target %s" % (tTagertImg))
                 return False
 
         elif tTagertImg == u"feature3.png":
-            print(u"found target %s"%(tTagertImg))
+            print(u"found target %s" % (tTagertImg))
             AndroidOpt.tapScreen(tx, ty, tDevice=tDev)
             time.sleep(2)
             Main.btnSkipAutoClick(tTagertImg, tScreenShoot, tDev)
 
         else:
-            print(u"found target %s"%(tTagertImg))
+            print(u"found target %s" % (tTagertImg))
             AndroidOpt.tapScreen(tx, ty, tDevice=tDev)
             time.sleep(2)
-
-
 
     @classmethod
     def btnSkipAutoClick(cls, tTagertImg, tScreenShoot, tDev):
@@ -108,14 +106,13 @@ class Main():
                 AndroidOpt.tapScreen(lx, ly, tDevice=tDev)
                 time.sleep(2)
 
-
     @classmethod
-    def calAverage(cls,tSrc):
+    def calAverage(cls, tSrc):
         try:
             mean = cv2.mean(cv2.split(tSrc)[0])[0]
             print mean
             return mean
-        except Exception,e:
+        except Exception, e:
             return 0
 
     @classmethod
@@ -126,7 +123,8 @@ class Main():
 
 
 
+
 if __name__ == "__main__":
-    print os.getcwd()
-    # Main.run()
-    Main.getAndroidDevice()
+    Main.hello()
+    Main.run()
+    # Main.getAndroidDevice()
