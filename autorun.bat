@@ -1,0 +1,1 @@
+python WzCoinScript.py
